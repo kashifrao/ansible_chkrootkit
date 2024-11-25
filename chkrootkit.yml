@@ -1,0 +1,22 @@
+
+    
+    
+    #  For new install
+    - name: Copy chkroot file if not exist
+      shell: if [ ! -f /usr/local/bin/chkrootkit ]; then sudo cp /srv/shared-mgmt/external-softwares/chkrootkit/chkrootkit /usr/local/bin/  ; else echo "" ; fi
+      become_user: root
+
+    ## Running command  sudo /usr/local/bin/chkrootkit | grep INFECTED
+
+
+    - name: Create chkrootkit log file
+      command: sudo touch /var/log/chkrootkit.log
+      become_user: root
+
+    - name: Chg permission for clamdscan log file
+      command: sudo chmod -R 775 /var/log/chkrootkit.log
+      become_user: root
+
+    - name: Chg permission for clamdscan log file
+      command: sudo chown -R ansible-c:root /var/log/chkrootkit.log
+      become_user: root
